@@ -1,8 +1,6 @@
 package com.example.awstest.controller;
 
 import com.example.awstest.domain.AssemblyOrder;
-import com.example.awstest.domain.Stage;
-import com.example.awstest.repository.AssemblyOrderRepository;
 import com.example.awstest.service.AssemblyOrderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

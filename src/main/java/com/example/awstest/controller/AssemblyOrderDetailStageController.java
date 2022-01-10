@@ -1,9 +1,11 @@
 package com.example.awstest.controller;
 
 import com.example.awstest.DAO.AssemblyOrderRemains;
-import com.example.awstest.DAO.TestDTO;
+import com.example.awstest.domain.AssemblyOrderDetailStage;
 import com.example.awstest.service.AssemblyOrderDetailStageService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,6 +22,12 @@ public class AssemblyOrderDetailStageController {
     @GetMapping("/orders/stages/remains")
     public List<AssemblyOrderRemains> get() {
         return assemblyOrderDetailStageService.getAllRemains();
+    }
+
+
+    @PostMapping("/orders/stages/remains")
+    public void createAssemblyOrderDetailStage(@RequestBody AssemblyOrderRemains assemblyOrderRemains) {
+        assemblyOrderDetailStageService.createAssemblyOrderDetailStageFact(assemblyOrderRemains);
     }
 
 
