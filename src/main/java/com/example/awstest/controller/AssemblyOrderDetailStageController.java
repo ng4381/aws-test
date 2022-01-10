@@ -1,6 +1,7 @@
 package com.example.awstest.controller;
 
 import com.example.awstest.DAO.AssemblyOrderRemains;
+import com.example.awstest.DAO.AssemblyOrderRemainsDTO;
 import com.example.awstest.domain.AssemblyOrderDetailStage;
 import com.example.awstest.service.AssemblyOrderDetailStageService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class AssemblyOrderDetailStageController {
 
 
     @PostMapping("/orders/stages/remains")
-    public void createAssemblyOrderDetailStage(@RequestBody AssemblyOrderRemains assemblyOrderRemains) {
+    public void createAssemblyOrderDetailStage(@RequestBody AssemblyOrderRemainsDTO assemblyOrderRemains) {
         assemblyOrderDetailStageService.createAssemblyOrderDetailStageFact(assemblyOrderRemains);
     }
 

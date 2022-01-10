@@ -1,6 +1,7 @@
 package com.example.awstest.service;
 
 import com.example.awstest.DAO.AssemblyOrderRemains;
+import com.example.awstest.DAO.AssemblyOrderRemainsDTO;
 import com.example.awstest.DAO.TestDTO;
 import com.example.awstest.domain.AssemblyOrderDetail;
 import com.example.awstest.domain.AssemblyOrderDetailStage;
@@ -34,7 +35,7 @@ public class AssemblyOrderDetailStageService {
         assemblyOrderDetailStageRepository.save(orderDetailStage);
     }
 
-    public void createAssemblyOrderDetailStageFact(AssemblyOrderRemains assemblyOrderRemains) {
+    public void createAssemblyOrderDetailStageFact(AssemblyOrderRemainsDTO assemblyOrderRemains) {
         AssemblyOrderDetail orderDetail = assemblyOrderDetailService.getAssemblyOrderDetailById(assemblyOrderRemains.getOrderDetailId());
         Stage stage = stageService.getStageById(assemblyOrderRemains.getOperationId());
 
