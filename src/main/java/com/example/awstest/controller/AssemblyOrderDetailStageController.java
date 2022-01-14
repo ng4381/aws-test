@@ -27,10 +27,15 @@ public class AssemblyOrderDetailStageController {
 
 
     @PostMapping("/orders/stages/remains")
-    public void createAssemblyOrderDetailStage(@RequestBody AssemblyOrderRemainsDTO assemblyOrderRemains) {
+    public void createAssemblyOrderDetailStage(@RequestBody List<AssemblyOrderRemainsDTO> assemblyOrderRemains) {
         assemblyOrderDetailStageService.createAssemblyOrderDetailStageFact(assemblyOrderRemains);
     }
 
+
+    @PostMapping("/orders/stages")
+    public void createAssemblyOrderDetailStage(@RequestBody AssemblyOrderDetailStage assemblyOrderDetailStage) {
+        assemblyOrderDetailStageService.createAssemblyOrderDetailStage(assemblyOrderDetailStage);
+    }
 
     /*
     @GetMapping("/orders/stages/remains")

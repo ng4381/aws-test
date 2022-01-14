@@ -22,5 +22,6 @@ public class AssemblyOrderDetailStage {
     private AssemblyOrderDetail assemblyOrderDetail;
 
     @OneToOne
+    @JoinColumn(name = "stage_id", referencedColumnName = "id")
     private Stage stage;
 }

@@ -30,7 +30,12 @@ public class AssemblyOrderService {
     public void createOrder(AssemblyOrder assemblyOrder) {
 
         Stage stage = null;
+
+
         AssemblyOrder order = assemblyOrderRepository.save(assemblyOrder);
+
+
+
         for(AssemblyOrderDetail orderDetail : assemblyOrder.getAssemblyOrderDetails()) {
 
             orderDetail.setAssemblyOrder(order);

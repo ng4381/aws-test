@@ -9,6 +9,7 @@ import com.example.awstest.domain.Stage;
 import com.example.awstest.repository.AssemblyOrderDetailStageRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,16 +36,22 @@ public class AssemblyOrderDetailStageService {
         assemblyOrderDetailStageRepository.save(orderDetailStage);
     }
 
-    public void createAssemblyOrderDetailStageFact(AssemblyOrderRemainsDTO assemblyOrderRemains) {
-        AssemblyOrderDetail orderDetail = assemblyOrderDetailService.getAssemblyOrderDetailById(assemblyOrderRemains.getOrderDetailId());
-        Stage stage = stageService.getStageById(assemblyOrderRemains.getOperationId());
+    public void createAssemblyOrderDetailStageFact(List<AssemblyOrderRemainsDTO> assemblyOrderRemains) {
 
-        AssemblyOrderDetailStage orderDetailStage = new AssemblyOrderDetailStage();
-        orderDetailStage.setAssemblyOrderDetail(orderDetail);
-        orderDetailStage.setStage(stage);
-        orderDetailStage.setPf("f");
-        orderDetailStage.setQty(assemblyOrderRemains.getQtyDone());
+        List<AssemblyOrderDetailStage> listOrderDetailStage = new ArrayList<>();
 
-        assemblyOrderDetailStageRepository.save(orderDetailStage);
+        for(AssemblyOrderRemainsDTO orderRemainsDTO : assemblyOrderRemains) {
+            AssemblyOrderDetail orderDetail = assemblyOrderDetailService.getAssemblyOrderDetailById(orderRemainsDTO.getOrderDetailId());
+            Stage stage = stageService.getStageById(orderRemainsDTO.getOperationId());
+
+            AssemblyOrderDetailStage orderDetailStage = new AssemblyOrderDetailStage();
+            orderDetailStage.setAssemblyOrderDetail(orderDetail);
+            orderDetailStage.setStage(stage);
+            orderDetailStage.setPf("f");
+            orderDetailStage.setQty(orderRemainsDTO.getQtyDone());
+
+            listOrderDetailStage.add(orderDetailStage);
+        }
+        assemblyOrderDetailStageRepository.saveAll(listOrderDetailStage);
     }
 }
