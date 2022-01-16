@@ -16,9 +16,10 @@ public class AssemblyOrderDetail {
     private Long productId;
     private int qty;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assembly_order_id")
     private AssemblyOrder assemblyOrder;
 
-    @OneToMany(mappedBy = "assemblyOrderDetail")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "assemblyOrderDetail")
     private List<AssemblyOrderDetailStage> assemblyOrderDetailStages = new ArrayList<>();
 }

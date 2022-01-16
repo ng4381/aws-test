@@ -18,7 +18,8 @@ public class AssemblyOrderDetailStage {
 
     private String pf;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assembly_order_detail_id")
     private AssemblyOrderDetail assemblyOrderDetail;
 
     @OneToOne

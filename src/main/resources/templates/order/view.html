@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/main_layout :: head(title = 'KTM - Orders')}">
+</head>
+<body>
+<nav th:replace="~{layouts/main_layout :: nav}"></nav>
+<div class="container" th:fragment="content">
+
+
+    <form action="#" th:modelAttribute="order" th:action="@{/ordermng}" th:object="${order}" method="post">
+        <div>
+            <p class="fs-2" th:text="'Заказ № ' + ${id}">Заказ № - от -</p>
+        </div>
+
+
+
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="extorderid">Счет</span>
+<!--            <input type="text" class="form-control" th:placeholder="${order.extOrderId}" aria-label="extOrderId" aria-describedby="basic-addon1">-->
+            <input class="form-control" type="number" th:field="*{extOrderId}" />
+        </div>
+
+
+        <div>
+            <button class="btn btn-primary" type="submit" name="action" value="addRow">Add</button>
+        </div>
+
+
+        <div>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>№</th>
+                        <th>Номенклатура</th>
+                        <th>Кол-во</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="od, odSt:*{assemblyOrderDetails}">
+
+
+
+                            <!--<td> <p>extOrderId: <input type="number" th:field="*{id}" /></p> </td>-->
+
+                            <td th:text="${odSt.index}"></td>
+                            <td>
+                                <input class="form-control" type="number" th:field="*{assemblyOrderDetails[__${odSt.index}__].productId}" />
+                            </td>
+    <!--                        <td th:text="${od.qty}">0.00</td>-->
+                            <td>
+                                <input class="form-control" type="number" th:field="*{assemblyOrderDetails[__${odSt.index}__].qty}" />
+                            </td>
+                            <td>
+                                <a class="btn btn-danger btn-sm">X</a>
+                            </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><input type="submit" name="action" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+    </form>
+
+</div>
+</body>
+</html>

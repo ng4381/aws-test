@@ -8,6 +8,7 @@ import com.example.awstest.repository.AssemblyOrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssemblyOrderService {
@@ -31,10 +32,7 @@ public class AssemblyOrderService {
 
         Stage stage = null;
 
-
         AssemblyOrder order = assemblyOrderRepository.save(assemblyOrder);
-
-
 
         for(AssemblyOrderDetail orderDetail : assemblyOrder.getAssemblyOrderDetails()) {
 
@@ -43,12 +41,43 @@ public class AssemblyOrderService {
 
             for(AssemblyOrderDetailStage orderDetailStage : orderDetail.getAssemblyOrderDetailStages()) {
                 orderDetailStage.setAssemblyOrderDetail(assemblyOrderDetail);
-                stage = stageService.getStageById(orderDetailStage.getStage().getId());
-                orderDetailStage.setStage(stage);
                 assemblyOrderDetailStageService.createAssemblyOrderDetailStage(orderDetailStage);
             }
         }
-
     }
 
+    public AssemblyOrder getOrderById(Long id) {
+        Optional<AssemblyOrder> assemblyOrderOptional = assemblyOrderRepository.findById(id);
+        if(assemblyOrderOptional.isEmpty()) {
+            throw new RuntimeException("Order not found!");
+        };
+        return assemblyOrderOptional.get();
+    }
+
+
+    public void updateOrder(AssemblyOrder assemblyOrder) {
+
+        AssemblyOrder order = assemblyOrderRepository.save(assemblyOrder);
+        for(AssemblyOrderDetail orderDetail : assemblyOrder.getAssemblyOrderDetails()) {
+
+            orderDetail.setAssemblyOrder(order);
+            AssemblyOrderDetail _orderDetail = assemblyOrderDetailService.createAssemblyOrderDetail(orderDetail);
+
+            List<AssemblyOrderDetailStage> orderDetailStages = _orderDetail.getAssemblyOrderDetailStages();
+
+            if(orderDetailStages.isEmpty()) {
+                AssemblyOrderDetailStage orderDetailStage1 = new AssemblyOrderDetailStage();
+                orderDetailStage1.setStage(stageService.getStageById(1L));
+                orderDetailStage1.setQty(orderDetail.getQty());
+                orderDetailStage1.setPf("p");
+                assemblyOrderDetailStageService.createAssemblyOrderDetailStage(orderDetailStage1);
+
+                AssemblyOrderDetailStage orderDetailStage2 = new AssemblyOrderDetailStage();
+                orderDetailStage2.setStage(stageService.getStageById(2L));
+                orderDetailStage2.setQty(orderDetail.getQty());
+                orderDetailStage2.setPf("p");
+                assemblyOrderDetailStageService.createAssemblyOrderDetailStage(orderDetailStage2);
+            }
+        }
+    }
 }
