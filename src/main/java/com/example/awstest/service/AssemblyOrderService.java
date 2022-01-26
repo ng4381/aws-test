@@ -70,14 +70,21 @@ public class AssemblyOrderService {
                 orderDetailStage1.setStage(stageService.getStageById(1L));
                 orderDetailStage1.setQty(orderDetail.getQty());
                 orderDetailStage1.setPf("p");
+                orderDetailStage1.setAssemblyOrderDetail(_orderDetail);
                 assemblyOrderDetailStageService.createAssemblyOrderDetailStage(orderDetailStage1);
 
                 AssemblyOrderDetailStage orderDetailStage2 = new AssemblyOrderDetailStage();
                 orderDetailStage2.setStage(stageService.getStageById(2L));
                 orderDetailStage2.setQty(orderDetail.getQty());
                 orderDetailStage2.setPf("p");
+                orderDetailStage2.setAssemblyOrderDetail(_orderDetail);
                 assemblyOrderDetailStageService.createAssemblyOrderDetailStage(orderDetailStage2);
             }
         }
+    }
+
+    public AssemblyOrder createNewOrder() {
+        AssemblyOrder assemblyOrder = new AssemblyOrder();
+        return assemblyOrderRepository.save(assemblyOrder);
     }
 }

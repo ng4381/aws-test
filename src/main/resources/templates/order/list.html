@@ -6,6 +6,15 @@
 <nav th:replace="~{layouts/main_layout :: nav}"></nav>
 <div class="container" th:fragment="content">
 
+    <form action="#" th:action="@{/web/orders/create}" method="post">
+        <div>
+            <p>
+                <button class="btn btn-primary" type="submit" name="action" value="addRow">Новый заказ</button>
+                <button class="btn btn-primary" type="submit" name="action" value="addRow">Загрузить из СБИС</button>
+            </p>
+        </div>
+    </form>
+
     <div>
         <table class="table">
             <thead class="table-dark">

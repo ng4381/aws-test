@@ -5,6 +5,7 @@ import com.example.awstest.service.AssemblyOrderService;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -22,5 +23,11 @@ public class OrderListController {
         List<AssemblyOrder> assemblyOrders = assemblyOrderService.getAllAssemblyOrders();
         model.addAttribute("orders", assemblyOrders);
         return "order/list";
+    }
+
+    @PostMapping("/web/orders/create")
+    public String createOrder() {
+        AssemblyOrder assemblyOrder = assemblyOrderService.createNewOrder();
+        return "redirect:/web/orders/get/" + assemblyOrder.getId();
     }
 }

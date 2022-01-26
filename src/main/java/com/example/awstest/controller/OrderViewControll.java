@@ -35,6 +35,9 @@ public class OrderViewControll {
             assemblyOrder = assemblyOrderService.getOrderById(id);
             log.info("**NIK** View.Creating new assemblyOrder bean");
         } else {
+            if(assemblyOrder.getId()!=id){
+                assemblyOrder = assemblyOrderService.getOrderById(id);
+            }
             log.info("**NIK** View.AssemblyOrder bean is NOT NULL");
         }
         model.addAttribute("order", assemblyOrder);
