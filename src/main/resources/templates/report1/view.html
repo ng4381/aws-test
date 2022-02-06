@@ -15,9 +15,9 @@
                 <th>Ass.Order</th>
                 <th>Ext.Order</th>
                 <th>Product</th>
+                <th>Stage</th>
                 <th>Qty</th>
-                <th>In progress</th>
-                <th>Complete</th>
+                <th>Done</th>
                 <th>Complete, %</th>
             </tr>
             </thead>
@@ -26,10 +26,10 @@
                 <td th:text="${osr.orderId}">1</td>
                 <td th:text="${osr.extOrderId}">extOrderId</td>
                 <td th:text="${osr.productName}">extOrderId</td>
-                <td>-</td>
+                <td th:text="${osr.stageName}">extOrderId</td>
                 <td th:text="${osr.qty}">extOrderId</td>
-                <td>-</td>
-                <td>0.00%</td>
+                <td th:text="${osr.qtyDone != 0} ? ${osr.qtyDone} : '-'">extOrderId</td>
+                <td th:text="${osr.qtyDone*100/osr.qty != 0} ? ${osr.qtyDone*100/osr.qty} : '-'">0.00%</td>
             </tr>
             </tbody>
         </table>

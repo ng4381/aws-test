@@ -20,7 +20,7 @@ public class AssemblyOrderRemainsDTO {
     @NonNull
     private int qtyDone;
     @NonNull
-    private Long operationId;
+    private Long stageId;
     @NonNull
-    private String operationName;
+    private String stageName;
 }

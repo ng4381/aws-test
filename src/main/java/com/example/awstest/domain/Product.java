@@ -1,8 +1,5 @@
 package com.example.awstest.domain;
 
-
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

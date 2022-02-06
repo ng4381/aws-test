@@ -1,14 +1,17 @@
 package com.example.awstest.repository;
 
-import com.example.awstest.dto.AssemblyOrderRemains;
 import com.example.awstest.domain.AssemblyOrderDetailStage;
+import com.example.awstest.dto.AssemblyOrderRemains;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 public interface AssemblyOrderDetailStageRepository extends JpaRepository<AssemblyOrderDetailStage, Long> {
-    @Query(nativeQuery = true, value = "select o.id as orderId, o.ext_order_id as extOrderId, od.id as orderDetailId, od.product_id as productId, p.name as productName, SUM(case when ods.pf='p' then ods.qty else -ods.qty end) as qty, 0 as qtyDone, s.id as operationId, s.name as operationName from assembly_order_detail_stage ods " +
+    @Query(nativeQuery = true, value = "select o.id as orderId, o.ext_order_id as extOrderId, od.id as orderDetailId, " +
+            "od.product_id as productId, p.name as productName, " +
+            "SUM(case when ods.pf='p' then ods.qty else 0 end) as qty, SUM(case when ods.pf='f' then ods.qty else 0 end) as qtyDone, " +
+            "s.id as stageId, s.name as stageName from assembly_order_detail_stage ods " +
             "left join stage s on  ods.stage_id = s.id " +
             "left join assembly_order_detail od on ods.assembly_order_detail_id = od.id " +
             "left join assembly_order o on o.id = od.assembly_order_id " +

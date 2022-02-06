@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface AssemblyOrderDetailRepository extends JpaRepository<AssemblyOrderDetail, Long> {
     List<AssemblyOrderDetail> findByAssemblyOrderId(Long id);
+    List<AssemblyOrderDetail> findByProductId(Long id);
 }

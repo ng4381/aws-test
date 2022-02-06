@@ -32,4 +32,9 @@ public class ExceptionController {
     public ResponseEntity<StageNotFoundException> stageNotFoundException() {
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(value = ProductCanNotBeDeletedException.class)
+    public ResponseEntity<ProductCanNotBeDeletedException> productCanNotBeDeletedException() {
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
 }

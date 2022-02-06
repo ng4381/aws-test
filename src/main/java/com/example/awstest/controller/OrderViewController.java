@@ -1,9 +1,9 @@
 package com.example.awstest.controller;
 
-import com.example.awstest.dto.AssemblyOrderFormDTO;
 import com.example.awstest.domain.AssemblyOrder;
 import com.example.awstest.domain.AssemblyOrderDetail;
 import com.example.awstest.domain.Product;
+import com.example.awstest.dto.AssemblyOrderFormDTO;
 import com.example.awstest.service.AssemblyOrderDetailService;
 import com.example.awstest.service.AssemblyOrderService;
 import com.example.awstest.service.ProductService;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.example.awstest.dto.AssemblyOrderFormDTO.*;
+import static com.example.awstest.dto.AssemblyOrderFormDTO.AssemblyOrderDetailDTO;
 
 
 @Controller
@@ -34,17 +34,17 @@ public class OrderViewController {
     }
 
     @GetMapping("web/orders/get/{id}")
-    public String viewStart(@PathVariable Long id, Model model){
+    public String viewStart(@PathVariable Long id, Model model) {
         AssemblyOrder assemblyOrder = assemblyOrderService.getOrderById(id);
         List<AssemblyOrderDetail> assemblyOrderDetails = assemblyOrderDetailService.getAssemblyOrderDetailsByOrderId(assemblyOrder.getId());
 
         AssemblyOrderFormDTO assemblyOrderForm = assemblyOrderService.buildAssemblyOrderFormDTO(assemblyOrder);
 
         model.addAttribute("order", assemblyOrderForm);
-        return "redirect:/web/orders/get/test";
+        return "redirect:/web/orders/get/view";
     }
 
-    @GetMapping("web/orders/get/test")
+    @GetMapping("web/orders/get/view")
     public String view(Model model) {
         model.addAttribute("products", productService.getAllProducts());
         return "order/view";
@@ -56,21 +56,19 @@ public class OrderViewController {
         return "order/list";
     }
 
-    @PostMapping("/ordermng")
-    public String addRow(@ModelAttribute("order") AssemblyOrderFormDTO assemblyOrderForm, @RequestParam(value = "action", required = true) String action){
+    @PostMapping("web/orders/ordermng")
+    public String addRow(@ModelAttribute("order") AssemblyOrderFormDTO assemblyOrderForm, @RequestParam(value = "action", required = true) String action) {
         if (action.equals("addRow")) {
             AssemblyOrderDetailDTO assemblyOrderDetailDTO = new AssemblyOrderDetailDTO();
             assemblyOrderDetailDTO.setQty(1);
             assemblyOrderDetailDTO.setProduct(new Product());
             assemblyOrderDetailDTO.setNew(true);
-
             assemblyOrderForm.getAssemblyOrderDetails().add(assemblyOrderDetailDTO);
-        } else if (action.equals("submit")){
-
+        } else if (action.equals("submit")) {
             assemblyOrderService.updateOrder(assemblyOrderForm);
-            log.info("*NIK* Order saved. " + assemblyOrderForm.getAssemblyOrderDetails());
+            log.info("Order saved. " + assemblyOrderForm.getAssemblyOrderDetails());
             return "redirect:/web/orders";
         }
-        return "redirect:/web/orders/get/test";
+        return "redirect:/web/orders/get/view";
     }
 }

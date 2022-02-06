@@ -1,13 +1,12 @@
 package com.example.awstest.controller;
 
 import com.example.awstest.domain.AssemblyOrder;
-import com.example.awstest.domain.AssemblyOrderDetail;
 import com.example.awstest.service.AssemblyOrderService;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -27,9 +26,6 @@ public class OrderController {
     public void createOrder(@RequestBody AssemblyOrder assemblyOrder) {
         assemblyOrderService.createOrder(assemblyOrder);
     }
-
-
-
 
 
 }

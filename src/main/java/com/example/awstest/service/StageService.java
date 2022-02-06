@@ -22,7 +22,7 @@ public class StageService {
     public Stage getStageById(Long id) {
 
         Optional<Stage> optionalStage = stageRepository.findById(id);
-        if(optionalStage.isEmpty()) {
+        if (optionalStage.isEmpty()) {
             throw new RuntimeException("Stage not found!!!");
         }
 

@@ -2,8 +2,8 @@ package com.example.awstest.controller;
 
 import com.example.awstest.domain.AssemblyOrder;
 import com.example.awstest.service.AssemblyOrderService;
-import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 

@@ -31,7 +31,7 @@ public class AssemblyOrderDetailService {
 
     public AssemblyOrderDetail getAssemblyOrderDetailById(Long id) {
         Optional<AssemblyOrderDetail> assemblyOrderDetailOption = assemblyOrderDetailRepository.findById(id);
-        if(assemblyOrderDetailOption.isEmpty()) {
+        if (assemblyOrderDetailOption.isEmpty()) {
             throw new AssemblyOrderDetailNotFoundException("Assembly order detail(" + id + ") not found!");
         }
         return assemblyOrderDetailOption.get();
@@ -39,9 +39,13 @@ public class AssemblyOrderDetailService {
 
     public List<AssemblyOrderDetail> getAssemblyOrderDetailsByOrderId(Long id) {
         Optional<AssemblyOrder> assemblyOrderOption = assemblyOrderRepository.findById(id);
-        if(assemblyOrderOption.isEmpty()) {
+        if (assemblyOrderOption.isEmpty()) {
             throw new AssemblyOrderNotFoundException("Assembly order(" + id + ") not found!");
         }
         return assemblyOrderDetailRepository.findByAssemblyOrderId(id);
+    }
+
+    public List<AssemblyOrderDetail> getAssemblyOrderDetailsByProductId(Long id) {
+        return assemblyOrderDetailRepository.findByProductId(id);
     }
 }

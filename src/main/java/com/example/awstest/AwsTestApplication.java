@@ -11,16 +11,14 @@ import org.springframework.web.context.annotation.SessionScope;
 @Slf4j
 public class AwsTestApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AwsTestApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AwsTestApplication.class, args);
+    }
 
-	@Bean
-	@SessionScope
-	public AssemblyOrder assemblyOrder() {
-		log.info("Create ne bean of AssemblyOrder");
-		return new AssemblyOrder();
-
-	}
-
+    @Bean
+    @SessionScope
+    public AssemblyOrder assemblyOrder() {
+        log.info("Create ne bean of AssemblyOrder");
+        return new AssemblyOrder();
+    }
 }

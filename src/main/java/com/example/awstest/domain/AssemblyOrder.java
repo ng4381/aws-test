@@ -3,12 +3,13 @@ package com.example.awstest.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class AssemblyOrder {
     @Id
     @GeneratedValue

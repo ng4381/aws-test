@@ -2,7 +2,10 @@ package com.example.awstest.controller;
 
 import com.example.awstest.domain.Stage;
 import com.example.awstest.service.StageService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

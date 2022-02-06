@@ -35,9 +35,9 @@ public class AssemblyOrderDetailStageService {
 
         List<AssemblyOrderDetailStage> listOrderDetailStage = new ArrayList<>();
 
-        for(AssemblyOrderRemainsDTO orderRemainsDTO : assemblyOrderRemains) {
+        for (AssemblyOrderRemainsDTO orderRemainsDTO : assemblyOrderRemains) {
             AssemblyOrderDetail orderDetail = assemblyOrderDetailService.getAssemblyOrderDetailById(orderRemainsDTO.getOrderDetailId());
-            Stage stage = stageService.getStageById(orderRemainsDTO.getOperationId());
+            Stage stage = stageService.getStageById(orderRemainsDTO.getStageId());
 
             AssemblyOrderDetailStage orderDetailStage = new AssemblyOrderDetailStage();
             orderDetailStage.setAssemblyOrderDetail(orderDetail);
