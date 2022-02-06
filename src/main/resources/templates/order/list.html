@@ -6,11 +6,13 @@
 <nav th:replace="~{layouts/main_layout :: nav}"></nav>
 <div class="container" th:fragment="content">
 
+    <p class="h2">Assembly Orders</p>
+
     <form action="#" th:action="@{/web/orders/create}" method="post">
         <div>
             <p>
-                <button class="btn btn-primary" type="submit" name="action" value="addRow">Новый заказ</button>
-                <button class="btn btn-primary" type="submit" name="action" value="addRow">Загрузить из СБИС</button>
+                <button class="btn btn-primary" type="submit" name="action" value="addRow">New Order</button>
+                <button class="btn btn-primary" type="submit" name="action" value="addRow">Load from SBIS</button>
             </p>
         </div>
     </form>
@@ -19,9 +21,9 @@
         <table class="table">
             <thead class="table-dark">
             <tr>
-                <th>Номер</th>
-                <th>Счет</th>
-                <th>Описание</th>
+                <th>Number</th>
+                <th>Ext.Order</th>
+                <th>Description</th>
                 <th></th>
             </tr>
             </thead>

@@ -19,7 +19,7 @@ public class OrderListController {
     }
 
     @GetMapping("web/orders")
-    public String list(Model model) {
+    public String getOrders(Model model) {
         List<AssemblyOrder> assemblyOrders = assemblyOrderService.getAllAssemblyOrders();
         model.addAttribute("orders", assemblyOrders);
         return "order/list";

@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -13,13 +11,21 @@ public class AssemblyOrderDetail {
     @Id
     @GeneratedValue
     private Long id;
-    private Long productId;
+    @OneToOne
+    private Product product;
     private int qty;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "assembly_order_id")
     private AssemblyOrder assemblyOrder;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "assemblyOrderDetail")
-    private List<AssemblyOrderDetailStage> assemblyOrderDetailStages = new ArrayList<>();
+    @Override
+    public String toString() {
+        return "AssemblyOrderDetail{" +
+                "id=" + id +
+                ", productId =" + product.getId() +
+                ", qty=" + qty +
+                ", assemblyOrder=" + assemblyOrder +
+                '}';
+    }
 }

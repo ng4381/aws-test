@@ -1,4 +1,4 @@
-package com.example.awstest.DAO;
+package com.example.awstest.dto;
 
 public interface AssemblyOrderRemains {
     Long getOrderId();

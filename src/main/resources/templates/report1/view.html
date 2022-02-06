@@ -6,26 +6,26 @@
 <nav th:replace="~{layouts/main_layout :: nav}"></nav>
 <div class="container" th:fragment="content">
 
-    <p class="h2">Отчет по заказам</p>
+    <p class="h2">Report</p>
 
     <div>
         <table class="table">
             <thead class="table-dark">
             <tr>
-                <th>Заказ</th>
-                <th>Счет</th>
-                <th>Продукция</th>
-                <th>В заказе</th>
-                <th>В работе</th>
-                <th>Выполнено</th>
-                <th>Процент вып., %</th>
+                <th>Ass.Order</th>
+                <th>Ext.Order</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>In progress</th>
+                <th>Complete</th>
+                <th>Complete, %</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="osr:${orders_stages_remains}">
                 <td th:text="${osr.orderId}">1</td>
                 <td th:text="${osr.extOrderId}">extOrderId</td>
-                <td th:text="${osr.productId}">extOrderId</td>
+                <td th:text="${osr.productName}">extOrderId</td>
                 <td>-</td>
                 <td th:text="${osr.qty}">extOrderId</td>
                 <td>-</td>

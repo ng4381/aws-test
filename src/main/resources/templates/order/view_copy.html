@@ -9,12 +9,12 @@
 
     <form action="#" th:modelAttribute="order" th:action="@{/ordermng}" th:object="${order}" method="post">
         <div>
-            <p class="fs-2" th:text="'Assembly order № ' + ${id}">Assembly order № - от -</p>
+            <p class="fs-2" th:text="'Заказ № ' + ${id}">Заказ № - от -</p>
         </div>
 
 
         <div class="input-group mb-3">
-            <span class="input-group-text" id="extorderid">Ext.Order</span>
+            <span class="input-group-text" id="extorderid">Счет</span>
             <input class="form-control" type="number" th:field="*{extOrderId}"/>
         </div>
 
@@ -33,8 +33,8 @@
                 <thead class="table-dark">
                 <tr>
                     <th>№</th>
-                    <th>Product</th>
-                    <th>Qty</th>
+                    <th>Номенклатура</th>
+                    <th>Кол-во</th>
                     <th></th>
 
                 </tr>
@@ -50,7 +50,7 @@
                         <!--                                <input class="form-control" type="number" th:field="*{assemblyOrderDetails[__${odSt.index}__].productId}" />-->
                         <div class="form-group blu-margin">
                             <select class="form-control" th:field="*{assemblyOrderDetails[__${odSt.index}__].product.id}">
-                                <!--                                <option value="0">select operator</option>-->
+<!--                                <option value="0">select operator</option>-->
                                 <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
                             </select>
                         </div>
@@ -69,7 +69,7 @@
             </table>
         </div>
 
-        <button class="btn btn-primary" type="submit" name="action" value="submit">Save</button>
+        <button class="btn btn-primary" type="submit" name="action" value="Submit">Сохранить</button>
 
     </form>
 

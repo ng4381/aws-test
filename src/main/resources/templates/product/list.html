@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/main_layout :: head(title = 'KTM - products')}">
+</head>
+<body>
+<nav th:replace="~{layouts/main_layout :: nav}"></nav>
+<div class="container" th:fragment="content">
+
+
+    <p class="h2">Products</p>
+
+
+    <form class="py-3" action="#" th:action="@{/web/products/create}" method="post">
+        <div class="input-group mb-3">
+            <span class="input-group-text">name</span>
+            <input class="form-control" type="text" th:field="*{product.name}" id="prodname"/>
+        </div>
+
+        <button class="btn btn-primary" type="submit" name="action" value="create" id="btn">Add product</button>
+    </form>
+
+    <div>
+        <table class="table">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product:${products}">
+                <td th:text="${product.id}">0</td>
+                <td th:text="${product.name}">-</td>
+                <td>
+                    <a th:href="@{'/web/products/delete/' + ${product.id}}" class="btn btn-danger btn-sm">X</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+    <script>
+        var inputProdName = document.getElementById("prodname")
+        var btn = document.getElementById("btn");
+        btn.disabled = (inputProdName.value === "") ? true : false;
+
+        inputProdName.onchange = handleChange;
+
+        function handleChange(e){
+            var btn = document.getElementById("btn");
+            btn.disabled = (inputProdName.value === "") ? true : false;
+        }
+    </script>
+
+</body>
+</html>

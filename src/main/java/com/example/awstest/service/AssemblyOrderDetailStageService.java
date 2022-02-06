@@ -1,11 +1,10 @@
 package com.example.awstest.service;
 
-import com.example.awstest.DAO.AssemblyOrderRemains;
-import com.example.awstest.DAO.AssemblyOrderRemainsDTO;
-import com.example.awstest.DAO.TestDTO;
 import com.example.awstest.domain.AssemblyOrderDetail;
 import com.example.awstest.domain.AssemblyOrderDetailStage;
 import com.example.awstest.domain.Stage;
+import com.example.awstest.dto.AssemblyOrderRemains;
+import com.example.awstest.dto.AssemblyOrderRemainsDTO;
 import com.example.awstest.repository.AssemblyOrderDetailStageRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +25,6 @@ public class AssemblyOrderDetailStageService {
 
     public List<AssemblyOrderRemains> getAllRemains() {
         return assemblyOrderDetailStageRepository.getAllAssemblyOrderRemains();
-    }
-
-    public List<TestDTO> getTestDTO() {
-        return assemblyOrderDetailStageRepository.gettestDTO();
     }
 
     public void createAssemblyOrderDetailStage(AssemblyOrderDetailStage orderDetailStage) {
@@ -53,5 +48,9 @@ public class AssemblyOrderDetailStageService {
             listOrderDetailStage.add(orderDetailStage);
         }
         assemblyOrderDetailStageRepository.saveAll(listOrderDetailStage);
+    }
+
+    public List<AssemblyOrderDetailStage> findByAssemblyOrderDetailId(Long id) {
+        return assemblyOrderDetailStageRepository.findByAssemblyOrderDetailId(id);
     }
 }

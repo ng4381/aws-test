@@ -14,7 +14,4 @@ public class AssemblyOrder {
     @GeneratedValue
     private Long id;
     private Long extOrderId;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "assemblyOrder")
-    private List<AssemblyOrderDetail> assemblyOrderDetails = new ArrayList<>();
-
 }
