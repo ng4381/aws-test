@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts/main_layout :: head(title = 'KTM - products')}">
+</head>
+<body>
+<nav th:replace="~{layouts/main_layout :: nav}"></nav>
+<div class="container" th:fragment="content">
+
+    <div class="jumbotron py-4">
+        <h1 class="display-4">Access error ...</h1>
+        <p class="lead">You don't have permission to watch this page!</p>
+        <hr class="my-4">
+        <p>Please contact your administrator for details</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>
