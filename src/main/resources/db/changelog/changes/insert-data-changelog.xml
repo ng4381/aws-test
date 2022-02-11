@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <changeSet id="ins-100" author="Nikita">
+        <tagDatabase tag="v.1.0"/>
+    </changeSet>
+
+    <changeSet id="ins-101" author="Nikita">
+        <insert tableName="mylogtype">
+            <column name="id" value="1"/>
+            <column name="name" value="INFO"/>
+        </insert>
+        <insert tableName="mylogtype">
+            <column name="id" value="2"/>
+            <column name="name" value="WARN"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="ins-102" author="Nikita">
+        <insert tableName="mylog">
+            <column name="description" value="liquibase works correctly"/>
+            <column name="type_id" value="1" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="ins-103" author="Nikita">
+        <update tableName="mylog">
+            <column name="timestamp" value="NOW()" />
+            <where>id=1</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>
