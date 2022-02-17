@@ -36,11 +36,4 @@ public class AssemblyOrderDetailStageController {
         assemblyOrderDetailStageService.createAssemblyOrderDetailStage(assemblyOrderDetailStage);
     }
 
-    /*
-    @GetMapping("/orders/stages/remains")
-    public List<TestDTO> get() {
-        return assemblyOrderDetailStageService.getTestDTO();
-    }
-     */
-
 }
