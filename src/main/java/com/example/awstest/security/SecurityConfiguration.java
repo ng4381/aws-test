@@ -1,6 +1,7 @@
 package com.example.awstest.security;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,16 +17,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         this.userDetailService = userDetailService;
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/orders/stages/remains").permitAll()
+                .antMatchers(HttpMethod.POST, "/test/wf").permitAll()
+                .antMatchers(HttpMethod.GET, "/test/wf").permitAll()
                 .antMatchers("/web/home").permitAll()
                 .antMatchers("/web/products/**").hasRole("ADMIN")
                 .antMatchers("/web/orders**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/web/reports/**").hasAnyRole("USER", "ADMIN")
                 .and()
+                .csrf().disable()
                 .formLogin()
                 .and()
                 .exceptionHandling().accessDeniedPage("/web/error");
