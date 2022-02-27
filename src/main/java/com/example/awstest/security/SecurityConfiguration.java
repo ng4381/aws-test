@@ -22,13 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/orders/stages/remains").permitAll()
-                .antMatchers(HttpMethod.POST, "/test/wf").permitAll()
-                .antMatchers(HttpMethod.GET, "/test/wf").permitAll()
+                .antMatchers(HttpMethod.POST,"/orders/stages/remains").permitAll()
+                .antMatchers(HttpMethod.GET,"/orders/stages/remains").permitAll()
                 .antMatchers("/web/home").permitAll()
                 .antMatchers("/web/products/**").hasRole("ADMIN")
                 .antMatchers("/web/orders**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/web/reports/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/web/stages").hasAnyRole("USER", "ADMIN")
                 .and()
                 .csrf().disable()
                 .formLogin()
