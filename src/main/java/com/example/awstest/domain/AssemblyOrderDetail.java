@@ -18,6 +18,7 @@ public class AssemblyOrderDetail {
 
     @ManyToOne
     @JoinColumn(name = "assembly_order_id")
+    private AssemblyOrder assemblyOrder;
 
     @Override
     public String toString() {
@@ -25,6 +26,7 @@ public class AssemblyOrderDetail {
                 "id=" + id +
                 ", productId =" + product.getId() +
                 ", qty=" + qty +
+                ", assemblyOrder=" + assemblyOrder +
                 '}';
     }
 }
